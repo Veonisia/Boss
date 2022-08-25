@@ -1,21 +1,32 @@
-local ScreenGui = Instance.new("ScreenGui")
-local Frame = Instance.new("Frame")
-local UICorner = Instance.new("UICorner")
-local timerr = Instance.new("TextLabel")
-ScreenGui.Parent = game.Players.LocalPlayer:WaitForChild("PlayerGui")
-ScreenGui.ZIndexBehavior = Enum.ZIndexBehavior.Sibling
-Frame.Parent = ScreenGui
-Frame.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-Frame.Position = UDim2.new(0.461119741, 0, 0, 0)
-Frame.Size = UDim2.new(0, 100, 0, 30)
-UICorner.Parent = Frame
-timerr.Name = "timerr"
-timerr.Parent = Frame
-timerr.BackgroundColor3 = Color3.fromRGB(255, 255, 255)
-timerr.BackgroundTransparency = 1.000
-timerr.Size = UDim2.new(0, 100, 0, 30)
-timerr.Font = Enum.Font.FredokaOne
-timerr.TextColor3 = Color3.fromRGB(0, 0, 0)
-timerr.TextScaled = true
-timerr.TextSize = 14.000
-timerr.TextWrapped = true
+-- // SCRIPT
+_G.Active = true -- // Change to false to stop
+
+local seakui = game:GetService("Players").LocalPlayer.Name
+local bosstimer = game:GetService("Workspace").BossArena.ClickBox.BillboardGui.Info.Timer
+local tpnum = game:GetService("Workspace").Seakui.HumanoidRootPart.TotalPower.Num
+local Imput = game:GetService("UserInputService")
+    Imput.InputBegan:connect(function(inst)
+    if inst.KeyCode == Enum.KeyCode.KeypadMinus then
+    local seakui = game:GetService("Players").LocalPlayer.Name
+    local tpnum = game:GetService("Workspace").Seakui.HumanoidRootPart.TotalPower.Num
+    game:GetService("Workspace")[seakui].HumanoidRootPart.TotalPower.Enabled = true
+    tpnum.Text = bosstimer.Text
+end
+end)
+
+
+function tp()
+    local vim = game:service'VirtualInputManager'
+    vim:SendKeyEvent(true, "KeypadMinus", false, game)
+end
+function checkboss()
+if bosstimer.Text == "Starts: 14s" then
+fireclickdetector(game:GetService("Workspace").BossArena.ClickBox.ClickDetector)
+game:GetService("Workspace")[seakui].Humanoid.Health = 0
+end
+end
+
+while _G.Active and wait(.5) do
+    tp()
+    checkboss()
+end
