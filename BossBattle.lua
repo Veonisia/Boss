@@ -1,7 +1,3 @@
-local seakui = game:GetService("Players").LocalPlayer.Name
-
-function ui()
-if game:GetService("Workspace")[seakui].Humanoid.Health == 0 then
 local ScreenGui = Instance.new("ScreenGui")
 local Frame = Instance.new("Frame")
 local UICorner = Instance.new("UICorner")
@@ -23,5 +19,3 @@ timerr.TextColor3 = Color3.fromRGB(0, 0, 0)
 timerr.TextScaled = true
 timerr.TextSize = 14.000
 timerr.TextWrapped = true
-end
-end
