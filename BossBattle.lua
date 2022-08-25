@@ -26,6 +26,7 @@ timerr.TextWrapped = true
 end
 end
 
+ui()
 while wait(.5) do
     ui()
 end
